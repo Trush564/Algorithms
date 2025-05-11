@@ -74,4 +74,40 @@ class BasicAlgSortTest {
         }
         return sourceArray;
     }
+    @Test
+    public void testBubbleSortDesc() {
+        Integer[] sourceArray = new Integer[]{5, 4, 10, 2, 1};
+        Integer[] expectedArray = new Integer[]{10, 5, 4, 2, 1};
+        BasicAlgSort<Integer> integerBasicAlgSort = new BasicAlgSort<>(sourceArray);
+        integerBasicAlgSort.bubbleSortDesc(0, sourceArray.length - 1);
+        assertThat(integerBasicAlgSort.getArray()).isEqualTo(expectedArray);
+    }
+
+    @Test
+    public void testSelectSortDesc() {
+        Integer[] sourceArray = new Integer[]{5, 4, 10, 2, 1};
+        Integer[] expectedArray = new Integer[]{10, 5, 4, 2, 1};
+        BasicAlgSort<Integer> integerBasicAlgSort = new BasicAlgSort<>(sourceArray);
+        integerBasicAlgSort.selectSortDesc(0, sourceArray.length - 1);
+        assertThat(integerBasicAlgSort.getArray()).isEqualTo(expectedArray);
+    }
+
+    @Test
+    public void testInsertionSortDesc() {
+        Integer[] sourceArray = new Integer[]{5, 4, 10, 2, 1, 8, -5, 0};
+        Integer[] expectedArray = new Integer[]{10, 8, 5, 4, 2, 1, 0, -5};
+        BasicAlgSort<Integer> integerBasicAlgSort = new BasicAlgSort<>(sourceArray);
+        integerBasicAlgSort.insertionSortDesc(0, sourceArray.length - 1);
+        assertThat(integerBasicAlgSort.getArray()).isEqualTo(expectedArray);
+    }
+
+    @Test
+    public void testRandomDescSort() {
+        int size = 10000;
+        Integer[] array = new Random().ints(size, -100, 101).boxed().toArray(Integer[]::new);
+        BasicAlgSort<Integer> sorter = new BasicAlgSort<>(array);
+
+        long timeBubble = BasicAlgSort.measureSort(() -> sorter.bubbleSortDesc(0, array.length - 1));
+        System.out.println("Bubble Sort Time (Descending): " + timeBubble / 1_000_000.0 + " ms");
+    }
 }

@@ -142,4 +142,42 @@ public class BasicAlgSort<T extends Comparable<? super T>> {
             System.out.println("Size:"+size+", Linear:"+timeLinear/1000000.0+"ms, Binary:"+timeBinary/1000000.0+"ms");
         }
     }
+    public void bubbleSortDesc(int leftIndex, int rightIndex) {
+        boolean swapped;
+        do {
+            swapped = false;
+            for (int i = leftIndex; i < rightIndex; i++) {
+                if (array[i].compareTo(array[i + 1]) < 0) {
+                    swap(i, i + 1);
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+    }
+
+    public void selectSortDesc(int leftIndex, int rightIndex) {
+        for (int i = leftIndex; i < rightIndex; i++) {
+            int maxIndex = i;
+            for (int j = i + 1; j <= rightIndex; j++) {
+                if (array[j].compareTo(array[maxIndex]) > 0) {
+                    maxIndex = j;
+                }
+            }
+            if (i != maxIndex) {
+                swap(i, maxIndex);
+            }
+        }
+    }
+
+    public void insertionSortDesc(int leftIndex, int rightIndex) {
+        for (int i = leftIndex + 1; i <= rightIndex; i++) {
+            T key = array[i];
+            int j = i - 1;
+            while (j >= leftIndex && array[j].compareTo(key) < 0) {
+                array[j + 1] = array[j];
+                j--;
+            }
+            array[j + 1] = key;
+        }
+    }
 }
